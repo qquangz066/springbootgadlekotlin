@@ -13,6 +13,8 @@ class CustomerController {
     @Autowired
     lateinit var customerService: CustomerService
 
+//    val customerMapper = Mappers.getMapper(CustomerMapper::class.java)
+
     @PostMapping
     fun create(@RequestBody customer: Customer) = customerService.create(customer)
 
@@ -24,4 +26,9 @@ class CustomerController {
 
     @GetMapping("/{id}")
     fun get(@PathVariable id: UUID) = customerService.get(id)
+
+//    @GetMapping("/{id}")
+//    fun get(@PathVariable id: UUID) = customerService.get(id).let {
+//        CustomerProto.Customer.newBuilder().setId(it.id.toString()).setFirstName(it.firstName).setLastName(it.lastName).build()
+//    }
 }

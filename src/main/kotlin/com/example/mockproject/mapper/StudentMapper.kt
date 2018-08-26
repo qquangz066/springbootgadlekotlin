@@ -5,12 +5,12 @@ import com.example.mockproject.entity.mongo.Student
 import com.example.mockproject.proto.CourseProto
 import org.mapstruct.*
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE)
-abstract class StudentMapper {
-    abstract fun student(student: CourseProto.Student): Student
+@Mapper
+interface StudentMapper {
+    fun student(student: CourseProto.Student): Student
 
-
-    fun type(type: CourseProto.PhoneType): PhoneType{
-        return PhoneType.valueOf(type.name)
-    }
+    @ValueMappings(
+        ValueMapping(source = MappingConstants.ANY_UNMAPPED, target = "MOBILE")
+    )
+    fun type(type: CourseProto.PhoneType): PhoneType
 }

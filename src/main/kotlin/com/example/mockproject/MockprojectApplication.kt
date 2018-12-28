@@ -8,12 +8,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer
 import org.springframework.transaction.annotation.EnableTransactionManagement
 
 @SpringBootApplication
 @EnableJpaRepositories
 @EnableJpaAuditing
 @EnableTransactionManagement
+@EnableResourceServer
 class MockprojectApplication : CommandLineRunner{
     @Autowired
     lateinit var vehicleMongoRepository: VehicleMongoRepository

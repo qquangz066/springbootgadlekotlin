@@ -4,14 +4,18 @@ buildscript {
 		springBootVersion = '2.0.4.RELEASE'
 	}
 	repositories {
-		mavenCentral()
+        maven {
+            url = uri("https://plugins.gradle.org/m2/")
+        }
 	}
+
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 		classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
 		classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
         classpath("org.jetbrains.kotlin:kotlin-noarg:$kotlinVersion")
         classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.6'
+        classpath("gradle.plugin.org.liquibase:liquibase-gradle-plugin:2.0.1")
 	}
 }
 
@@ -23,6 +27,7 @@ apply plugin: 'kotlin-spring'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'com.google.protobuf'
+apply plugin: "org.liquibase.gradle"
 
 
 group = 'com.example'
@@ -47,6 +52,8 @@ repositories {
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('org.springframework.boot:spring-boot-starter-security')
+	compile('org.springframework.security.oauth:spring-security-oauth2:2.3.4.RELEASE')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('com.fasterxml.jackson.module:jackson-module-kotlin')
 	compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
@@ -61,10 +68,11 @@ dependencies {
 	compile( 'org.mapstruct:mapstruct-jdk8:1.2.0.Final' )
     kapt  ( 'org.mapstruct:mapstruct-processor:1.2.0.Final' )
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+	compile('org.liquibase:liquibase-core:3.6.2')
 }
 protobuf {
     protoc {
-        artifact = 'com.google.protobuf:protoc:3.3.0'
+        artifact = 'com.google.protobuf:protoc:3.6.1'
     }
 	generateProtoTasks.generatedFilesBaseDir = 'src'
 
@@ -78,4 +86,15 @@ task cleanProtoGen{
 	}
 }
 clean.dependsOn cleanProtoGen
+
+liquibase {
+    activities {
+        main {
+            changeLogFile '$projectDir/src/main/resources/changelog/db.changelog-master.yml'
+            url 'jdbc:postgresql://localhost:5432/secureskye'
+            username 'postgres'
+            password 'postgres'
+        }
+    }
+}
 

@@ -8,22 +8,16 @@ spring:
     properties.hibernate.temp.use_jdbc_metadata_defaults: false
   datasource:
     platform: postgres
-    url: jdbc:postgresql://localhost:5432/secureskye
+    url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
     password: postgres
   data:
     mongodb:
       host: localhost
-      database: mycollection
-      username: mongodb
-      password: mongodb
+      database: mongo
+      username: mongo
+      password: mongo
       port: 27017
       authentication-database: admin
   liquibase:
     change-log: classpath:/changelog/db.changelog-master.yml
-
-#logging
-logging:
-  level:
-    org.springframework.data: debug
-    .: error

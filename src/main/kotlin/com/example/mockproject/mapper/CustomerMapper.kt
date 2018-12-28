@@ -9,7 +9,9 @@ import java.util.*
 @Mapper
 @Component
 abstract class CustomerMapper {
+
     abstract fun customer(customer: CustomerProto.Customer): Customer
+
     fun mapStringToUUID(id: String): UUID {
         return UUID.fromString(id)
     }

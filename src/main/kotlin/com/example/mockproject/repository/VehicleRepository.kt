@@ -6,4 +6,4 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor
 import org.springframework.stereotype.Repository
 
 @Repository
-interface VehicleRepository : JpaRepository<Vehicle, String>, JpaSpecificationExecutor<Vehicle>
+interface VehicleRepository : JpaRepository<Vehicle, Long>, JpaSpecificationExecutor<Vehicle>

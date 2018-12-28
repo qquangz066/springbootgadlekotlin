@@ -15,34 +15,33 @@ import javax.validation.constraints.NotBlank
 data class Vehicle(
 
         @Id
-        var id: String?,
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        var id: Long = 0,
 
         @NotBlank
-        var vin: String?,
+        var vin: String = "",
 
         @NotBlank
-        var make: String?,
+        var make: String = "",
 
         @NotBlank
-        var model: String?,
+        var model: String = "",
 
         @NotBlank
-        var color: String?,
+        var color: String = "",
 
         @NotBlank
-        var bodyType: String?,
+        var bodyType: String = "",
 
         @NotBlank
-        var image: String?,
+        var image: String = "",
 
         @Column(name = "created_date", nullable = false, updatable = false)
         @CreatedDate
-        var createDate: LocalDateTime?=null,
+        var createDate: LocalDateTime? = null,
 
         @Column(name = "modified_date")
         @LastModifiedDate
-        var lastModifiedDate: LocalDateTime?=null
+        var lastModifiedDate: LocalDateTime? = null
 
-) : Serializable{
-
-}
+) : Serializable {}

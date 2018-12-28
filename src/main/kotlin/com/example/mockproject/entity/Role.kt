@@ -1,10 +1,18 @@
 package com.example.mockproject.entity
 
 import javax.persistence.*
+import javax.validation.constraints.NotBlank
 
 @Entity
+@Table(name = "roles")
 data class Role(
-        var id: Int,
+
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        var id: Long,
+
+        @NotBlank
+        var name: String?,
 
         @ManyToMany(fetch = FetchType.EAGER)
         @JoinTable(

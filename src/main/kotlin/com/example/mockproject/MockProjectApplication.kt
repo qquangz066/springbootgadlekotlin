@@ -1,6 +1,8 @@
 package com.example.mockproject
 
 import com.example.mockproject.entity.Vehicle
+import com.example.mockproject.entity.mongo.Customer
+import com.example.mockproject.repository.mongo.CustomerMongoRepository
 import com.example.mockproject.repository.mongo.VehicleMongoRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.CommandLineRunner
@@ -16,15 +18,15 @@ import org.springframework.transaction.annotation.EnableTransactionManagement
 @EnableJpaAuditing
 @EnableTransactionManagement
 @EnableResourceServer
-class MockprojectApplication : CommandLineRunner{
+class MockProjectApplication : CommandLineRunner{
     @Autowired
-    lateinit var vehicleMongoRepository: VehicleMongoRepository
+    lateinit var customerMongoRepository: CustomerMongoRepository
     override fun run(vararg args: String?) {
-        vehicleMongoRepository.save(Vehicle("Alice", "Smith","String","String","String","String","String"))
+        customerMongoRepository.save(Customer(firstName = "test",lastName = "test"))
     }
 
 }
 
 fun main(args: Array<String>) {
-    runApplication<MockprojectApplication>(*args)
+    runApplication<MockProjectApplication>(*args)
 }

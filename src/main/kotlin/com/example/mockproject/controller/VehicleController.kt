@@ -19,17 +19,17 @@ class VehicleController() {
     }
 
     @GetMapping("/{id}")
-    fun get(@PathVariable("id") id: String): Vehicle {
+    fun get(@PathVariable("id") id: Long): Vehicle {
         return vehicleService.get(id)
     }
 
     @PutMapping("/{id}")
-    fun update(@PathVariable("id") id: String, @RequestBody vehicle: Vehicle): Vehicle {
+    fun update(@PathVariable("id") id: Long, @RequestBody vehicle: Vehicle): Vehicle {
         return vehicleService.update(id, vehicle)
     }
 
     @DeleteMapping("/{id}")
-    fun delete(@PathVariable("id") id: String): Boolean {
+    fun delete(@PathVariable("id") id: Long): Boolean {
         return vehicleService.delete(id)
     }
 

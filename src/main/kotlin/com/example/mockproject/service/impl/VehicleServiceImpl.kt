@@ -19,7 +19,7 @@ class VehicleServiceImpl(
         private val vehicleRepository: VehicleRepository
 ) : VehicleService {
 
-    override fun update(id: String, vehicle: Vehicle): Vehicle {
+    override fun update(id: Long, vehicle: Vehicle): Vehicle {
         var record: Vehicle=vehicleRepository.findById(id).orElseThrow { throw EntityNotFoundException() }
         record.vin=vehicle.vin
         record.make=vehicle.make
@@ -69,11 +69,11 @@ class VehicleServiceImpl(
         return vehicleRepository.findAll(s)
     }
 
-    override fun get(id: String): Vehicle {
+    override fun get(id: Long): Vehicle {
         return vehicleRepository.findById(id).orElseThrow { throw EntityNotFoundException() }
     }
 
-    override fun delete(id: String): Boolean {
+    override fun delete(id: Long): Boolean {
         return vehicleRepository.findById(id).map { vehicle ->
             vehicleRepository.delete(vehicle)
             true

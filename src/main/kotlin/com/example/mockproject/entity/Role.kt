@@ -9,7 +9,7 @@ data class Role(
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        var id: Long,
+        var id: Long=0,
 
         @NotBlank
         var name: String?,
@@ -20,5 +20,5 @@ data class Role(
                 joinColumns = [(JoinColumn(name = "roles_id", referencedColumnName = "id"))],
                 inverseJoinColumns = [(JoinColumn(name = "authorities_id", referencedColumnName = "id"))]
         )
-        var authorities: List<Authority> = mutableListOf()
+        var authorities: Set<Authority> = mutableSetOf()
 )

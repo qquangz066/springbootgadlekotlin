@@ -21,3 +21,7 @@ spring:
       authentication-database: admin
   liquibase:
     change-log: classpath:/changelog/db.changelog-master.yml
+
+logging:
+  level:
+    org.springframework.security: DEBUG

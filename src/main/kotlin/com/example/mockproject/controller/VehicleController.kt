@@ -3,6 +3,7 @@ package com.example.mockproject.controller
 import com.example.mockproject.entity.Vehicle
 import com.example.mockproject.service.VehicleService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
@@ -14,6 +15,7 @@ class VehicleController() {
     lateinit var vehicleService: VehicleService
 
     @GetMapping()
+    @PreAuthorize("hasAuthority('user:create') and #oauth2.clientHasRole('user:create')")
     fun getAll(): List<Vehicle> {
         return vehicleService.getAll()
     }

@@ -9,13 +9,16 @@ data class User(
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        var id: Long,
+        var id: Long=0,
 
         @NotBlank
-        var name: String?,
+        var userName: String?,
 
         @NotBlank
         var password: String?,
+
+        @NotBlank
+        var name: String?,
 
         @ManyToMany(fetch = FetchType.EAGER)
         @JoinTable(

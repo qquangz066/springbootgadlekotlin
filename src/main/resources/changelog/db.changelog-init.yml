@@ -155,13 +155,13 @@ databaseChangeLog:
                 value: product-api
           - column:
                 name: client_secret
-                value: secret
+                value: $2a$10$L0C1Z4tplwk/CgpHsImcp.Usf9E8dULP7iASTK0jlK99RceJ.mKd.
           - column:
                 name: scope
                 value: none
           - column:
                 name: authorized_grant_types
-                value: client_credentials,refresh_token
+                value: client_credentials,refresh_token,password
           - column:
                 name: web_server_redirect_uri
                 value: https://localhost
